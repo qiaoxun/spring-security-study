@@ -10,9 +10,22 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 //        http.httpBasic()
+//        http.formLogin()
+//                .loginPage("/security-login.html")
+//                .loginProcessingUrl("/authentication/form")
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/security-login.html").permitAll()
+//                .anyRequest()
+//                .authenticated()
+//                ;
+
         http.formLogin()
+                .loginPage("/security-login.html")
+                .loginProcessingUrl("/authentication")
                 .and()
                 .authorizeRequests()
+                .antMatchers("/security-login.html").permitAll()
                 .anyRequest()
                 .authenticated();
     }
