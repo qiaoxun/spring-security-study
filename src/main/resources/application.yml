@@ -1,2 +1,22 @@
 server:
   port: 8050
+
+spring:
+  profiles:
+    active: dev
+
+study:
+  secrity:
+      port: 5050
+      browser:
+        loginPage: aaaaa
+
+my:
+  webserver:
+    #HTTP 监听端口
+    port: 80
+    #嵌入Web服务器的线程池配置
+    threadPool:
+      maxThreads: 100
+      minThreads: 8
+      idleTimeout: 60000
