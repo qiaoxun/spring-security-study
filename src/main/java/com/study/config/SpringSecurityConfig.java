@@ -27,6 +27,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/security-login.html").permitAll()
                 .anyRequest()
-                .authenticated();
+                .authenticated()
+                .and()
+                .csrf()
+                .disable();
     }
 }
