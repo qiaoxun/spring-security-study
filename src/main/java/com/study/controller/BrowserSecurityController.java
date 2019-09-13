@@ -1,7 +1,9 @@
 package com.study.controller;
 
 import com.study.domain.SimpleResponse;
+import com.study.filter.ValidateCodeFilter;
 import com.study.properties.SecurityProperties;
+import com.study.utils.VerifyCodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Random;
 
 @RestController
 public class BrowserSecurityController {
@@ -45,6 +49,21 @@ public class BrowserSecurityController {
         logger.info("new SimpleResponse(\"请引导用户到登录页面\")");
 //        Thread.dumpStack();
         return new SimpleResponse("请引导用户到登录页面");
+    }
+
+    /**
+     * TODO 一次请求为什么会被调用两次？？？
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/authentication/verifyCode")
+    public void getValidateCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
+        session.setAttribute(ValidateCodeFilter.VERIFY_CODE, verifyCode);
+        int w = 80, h = 32;
+        VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
     }
 
 }
