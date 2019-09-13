@@ -1,6 +1,5 @@
 
 study:
-     secrity:
-       port: 5050
-       browser:
-        loginPage: aaaaa
+  security:
+    browser:
+      loginPage: /customized-login.html

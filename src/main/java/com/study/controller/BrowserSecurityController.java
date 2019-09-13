@@ -1,7 +1,6 @@
 package com.study.controller;
 
 import com.study.domain.SimpleResponse;
-import com.study.properties.MyWebServerConfigurationProperties;
 import com.study.properties.SecurityProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,16 +31,9 @@ public class BrowserSecurityController {
     @Autowired
     private SecurityProperties securityProperties;
 
-    @Autowired
-    private MyWebServerConfigurationProperties myWebServerConfigurationProperties;
-
     @RequestMapping("/authentication/require")
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requestAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        logger.info("securityProperties.getPort ======= " + securityProperties.getPort());
-
-        logger.info("myWebServerConfigurationProperties = " + myWebServerConfigurationProperties);
-
         SavedRequest savedRequest = requestCache.getRequest(request, response);
         if (savedRequest != null) {
             String targetURL = savedRequest.getRedirectUrl();
