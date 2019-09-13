@@ -3,3 +3,4 @@ study:
   security:
     browser:
       loginPage: /customized-login.html
+      loginType: REDIRECT
