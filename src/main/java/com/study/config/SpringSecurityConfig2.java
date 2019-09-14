@@ -2,7 +2,7 @@ package com.study.config;
 
 import com.study.authentication.MyAuthenticationFailureHandler;
 import com.study.authentication.MyAuthenticationSuccessHandler;
-import com.study.filter.ValidateCodeFilter;
+import com.study.filter.VerifyCodeFilter;
 import com.study.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class SpringSecurityConfig2 extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        ValidateCodeFilter validateCodeFilter = new ValidateCodeFilter();
+        VerifyCodeFilter validateCodeFilter = new VerifyCodeFilter();
         validateCodeFilter.setMyAuthenticationFailureHandler(myAuthenticationFailureHandler);
 
         http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
@@ -34,6 +34,10 @@ public class SpringSecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/authentication/form")
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(myAuthenticationFailureHandler)
+                .and()
+                .logout()
+                .logoutUrl("/authentication/logout")
+                .logoutSuccessUrl(securityProperties.getBrowser().getLoginPage())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/authentication/require", "/authentication/verifyCode",  securityProperties.getBrowser().getLoginPage()).permitAll()
