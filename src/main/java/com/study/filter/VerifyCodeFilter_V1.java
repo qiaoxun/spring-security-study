@@ -2,30 +2,23 @@ package com.study.filter;
 
 import com.study.authentication.MyAuthenticationFailureHandler;
 import com.study.exception.VerifyCodeWrongException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-public class ValidateCodeFilter extends OncePerRequestFilter {
+public class VerifyCodeFilter_V1 extends OncePerRequestFilter {
 
     public static final String VERIFY_CODE = "VERIFY_CODE";
     public static final String SPRING_SECURITY_FORM_VERIFY_CODE_KEY = "verifyCode";
 
     private MyAuthenticationFailureHandler myAuthenticationFailureHandler;
 
-    public ValidateCodeFilter() {
+    public VerifyCodeFilter_V1() {
     }
 
     @Override

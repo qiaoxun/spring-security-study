@@ -1,7 +1,7 @@
 package com.study.controller;
 
 import com.study.domain.SimpleResponse;
-import com.study.filter.ValidateCodeFilter;
+import com.study.filter.VerifyCodeFilter;
 import com.study.properties.SecurityProperties;
 import com.study.utils.VerifyCodeUtils;
 import org.slf4j.Logger;
@@ -22,7 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Random;
 
 @RestController
 public class BrowserSecurityController {
@@ -61,7 +60,7 @@ public class BrowserSecurityController {
     public void getValidateCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
-        session.setAttribute(ValidateCodeFilter.VERIFY_CODE, verifyCode);
+        session.setAttribute(VerifyCodeFilter.VERIFY_CODE, verifyCode);
         int w = 80, h = 32;
         VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
     }
