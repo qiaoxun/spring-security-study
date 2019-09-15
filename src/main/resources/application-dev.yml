@@ -3,4 +3,5 @@ study:
   security:
     browser:
       loginPage: /customized-login.html
+      loginProcessingUrl: /authentication/form
       loginType: REDIRECT

@@ -3,6 +3,7 @@ package com.study.config;
 import com.study.authentication.MyAuthenticationFailureHandler;
 import com.study.authentication.MyAuthenticationSuccessHandler;
 import com.study.filter.VerifyCodeFilter;
+import com.study.filter.VerifyCodeFilter_V1;
 import com.study.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -25,13 +26,15 @@ public class SpringSecurityConfig2 extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        VerifyCodeFilter validateCodeFilter = new VerifyCodeFilter();
-        validateCodeFilter.setMyAuthenticationFailureHandler(myAuthenticationFailureHandler);
 
-        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)
+        String loginProcessingUrl = securityProperties.getBrowser().getLoginProcessingUrl();
+        VerifyCodeFilter verifyCodeFilter = new VerifyCodeFilter(loginProcessingUrl);
+        verifyCodeFilter.setMyAuthenticationFailureHandler(myAuthenticationFailureHandler);
+
+        http//.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
                 .loginPage("/authentication/require")
-                .loginProcessingUrl("/authentication/form")
+                .loginProcessingUrl(loginProcessingUrl)
                 .successHandler(myAuthenticationSuccessHandler)
                 .failureHandler(myAuthenticationFailureHandler)
                 .and()

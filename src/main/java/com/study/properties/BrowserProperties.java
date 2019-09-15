@@ -7,6 +7,8 @@ import static com.study.utils.LoginType.JSON;
 public class BrowserProperties {
     private String loginPage = "/security-login.html";
 
+    private String loginProcessingUrl = "/login";
+
     private LoginType loginType = JSON;
 
     public String getLoginPage() {
@@ -23,5 +25,13 @@ public class BrowserProperties {
 
     public void setLoginType(LoginType loginType) {
         this.loginType = loginType;
+    }
+
+    public String getLoginProcessingUrl() {
+        return loginProcessingUrl;
+    }
+
+    public void setLoginProcessingUrl(String loginProcessingUrl) {
+        this.loginProcessingUrl = loginProcessingUrl;
     }
 }
