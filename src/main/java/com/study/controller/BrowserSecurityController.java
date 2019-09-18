@@ -65,4 +65,11 @@ public class BrowserSecurityController {
         VerifyCodeUtils.outputImage(w, h, response.getOutputStream(), verifyCode);
     }
 
+    @RequestMapping("/authentication/smsCode")
+    public void getSmsCode(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        String verifyCode = "123222";
+        session.setAttribute("SMS_CODE", verifyCode);
+    }
+
 }
