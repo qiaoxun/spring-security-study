@@ -24,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * If it's rest api, we can also validate the verify code at login method
+ */
 public class VerifyCodeFilter extends AbstractAuthenticationProcessingFilter {
 
     public static final String VERIFY_CODE = "VERIFY_CODE";
