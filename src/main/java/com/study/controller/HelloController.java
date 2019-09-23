@@ -14,7 +14,7 @@ public class HelloController {
     }
 
     @RequestMapping("/preAuthorizeTest")
-    @PreAuthorize("hasAnyRole('ADMIN','DICT_ALL','DICT_EDIT')")
+    @PreAuthorize("hasAnyRole('DICT_ALL','DICT_EDIT')")
     public String preAuthorizeTest() {
         return "preAuthorizeTest";
     }
