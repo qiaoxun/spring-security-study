@@ -18,4 +18,10 @@ public class HelloController {
     public String preAuthorizeTest() {
         return "preAuthorizeTest";
     }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public String hasRoleTest() {
+        return "hasRole";
+    }
+
 }
