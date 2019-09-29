@@ -19,9 +19,15 @@ public class HelloController {
         return "preAuthorizeTest";
     }
 
+    @RequestMapping("/hasRoleTest")
     @PreAuthorize("hasRole('ADMIN')")
     public String hasRoleTest() {
         return "hasRole";
     }
 
+    @RequestMapping("/find")
+    @PreAuthorize("#id<10")
+    public String find(int id) {
+        return "find user by id........." + id;
+    }
 }
