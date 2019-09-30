@@ -19,6 +19,12 @@ public class HelloController {
         return "preAuthorizeTest";
     }
 
+    @RequestMapping("/hasAuthorityTest")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public String hasAuthority() {
+        return "hasAuthority";
+    }
+
     @RequestMapping("/hasRoleTest")
     @PreAuthorize("hasRole('ADMIN')")
     public String hasRoleTest() {

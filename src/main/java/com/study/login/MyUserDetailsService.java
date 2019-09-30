@@ -33,6 +33,6 @@ public class MyUserDetailsService implements UserDetailsService {
         String password = passwordEncoder.encode("123456");
         System.out.println(password);
 
-        return new User(username, password,true, true, true, true,  AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new User(username, password,true, true, true, true,  AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN"));
     }
 }
